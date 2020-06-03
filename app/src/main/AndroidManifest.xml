@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Triaje"></activity>
+        <activity android:name=".Acerca"></activity>
+        <activity android:name=".Alertas" />
+        <activity android:name=".Recomendaciones" />
+        <activity android:name=".Mapa" />
+        <activity android:name=".Infectados" />
+        <activity android:name=".Triaje" />
         <activity android:name=".Menu" />
         <activity android:name=".RegistroUsuario" />
         <activity android:name=".MainActivity">
