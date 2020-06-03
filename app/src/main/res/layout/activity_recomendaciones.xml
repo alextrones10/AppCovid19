@@ -6,4 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".Recomendaciones">
 
+    <TextView
+        android:id="@+id/textView35"
+        android:layout_width="274dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:text="- Lavate las manos con frecuencia o desinféctalas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="267dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="16dp"
+        android:text="- Tose cubriendote el codo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="267dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="20dp"
+        android:text="- Use mascarillas al salir de casa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="267dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="16dp"
+        android:text="- No se toque la nariz, los ojos o la boca"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="267dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="16dp"
+        android:text="- Seguir las recomendaciones de las organizaciones de salud"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView39" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="267dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="16dp"
+        android:text="- Manten el distanciamiento social"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Recomendaciones"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="267dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="24dp"
+        android:text="- Quedate en casa lo máximo posible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="272dp"
+        android:layout_height="111dp"
+        android:layout_marginTop="16dp"
+        android:text="- En caso de presentar síntomas, llamar al 106 (SAMU) o al 117 (Essalud) y seguir con las recomendaciones de los especialistas y de ser necesario acudir a un establecimiento de salud."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView40" />
 </androidx.constraintlayout.widget.ConstraintLayout>
