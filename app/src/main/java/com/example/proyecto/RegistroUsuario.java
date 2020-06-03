@@ -27,8 +27,8 @@ public class RegistroUsuario extends AppCompatActivity {
     //Objetos
 
     Button btnAceptarU;
-    EditText edtNumDoc,edtCelular,edtNacionalidad,edtDepartamento,edtProvincia,edtDistrito,edtDireccion;
-    Spinner spTDoc;
+    EditText edtNumDoc,edtCelular,edtDepartamento,edtProvincia,edtDistrito,edtDireccion;
+    Spinner spTDocumento, spNacionalidad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,13 +36,19 @@ public class RegistroUsuario extends AppCompatActivity {
 
         //Vinculación de los objetos a los controles en el Layout
         //Spinner
-        spTDoc = (Spinner) findViewById(R.id.spDocumento);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.TipoDocumento,android.R.layout.simple_spinner_item);
-        spTDoc.setAdapter(adapter);
+        spTDocumento = (Spinner) findViewById(R.id.spDocumento);
+        String [] TipoDocumento = new String[] {"DNI","Pasaporte","CE"};
+        ArrayAdapter<String> adTipo = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,TipoDocumento);
+        spTDocumento.setAdapter(adTipo);
+
+        //Spinner02
+        spNacionalidad = (Spinner) findViewById(R.id.spNacionalidad);
+        String [] Nacionalidad = new String[] {"Peruano","Venezolano","Boliviano","Argentino","Ecuatoriano","Brasileño"};
+        ArrayAdapter<String> adNacionalidad = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Nacionalidad);
+        spNacionalidad.setAdapter(adNacionalidad);
         //
         edtNumDoc = (EditText)findViewById(R.id.edtNumDoc);
         edtCelular = (EditText)findViewById(R.id.edtCelular);
-        edtNacionalidad = (EditText)findViewById(R.id.edtNacionalidad);
         edtDepartamento= (EditText)findViewById(R.id.edtDepartamento);
         edtProvincia = (EditText)findViewById(R.id.edtProvincia);
         edtDistrito = (EditText)findViewById(R.id.edtDistrito);
@@ -53,7 +59,7 @@ public class RegistroUsuario extends AppCompatActivity {
         btnAceptarU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ejecutarSerivcio("http://192.168.1.12:8081/proyectodb/inserta_usuario.php");
+                ejecutarSerivcio("http://192.168.1.12:8080/proyectodb/insertar_usuario.php");
                 startActivity(new Intent(RegistroUsuario.this, Menu.class));
             }
         });
@@ -76,14 +82,14 @@ public class RegistroUsuario extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> parametros = new HashMap<String,String>();
                 parametros.put("num_usu",edtNumDoc.getText().toString());
-                parametros.put("doctipo_usu",spTDoc.getSelectedItem().toString());
+                parametros.put("doctipo_usu",spTDocumento.getSelectedItem().toString());
                 parametros.put("cel_usu",edtCelular.getText().toString());
-                parametros.put("nac_usu",edtNacionalidad.getText().toString());
+                parametros.put("nac_usu",spNacionalidad.getSelectedItem().toString());
                 parametros.put("dept_usu",edtDepartamento.getText().toString());
                 parametros.put("prov_usu",edtProvincia.getText().toString());
                 parametros.put("dist_usu",edtDistrito.getText().toString());
                 parametros.put("dir_usu",edtDireccion.getText().toString());
-                return super.getParams();
+                return parametros;
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);

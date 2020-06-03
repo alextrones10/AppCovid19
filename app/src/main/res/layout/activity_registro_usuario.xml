@@ -61,14 +61,14 @@
         android:id="@+id/edtDepartamento"
         android:layout_width="212dp"
         android:layout_height="38dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.874"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtNacionalidad" />
+        app:layout_constraintTop_toBottomOf="@+id/spNacionalidad" />
 
     <TextView
         android:id="@+id/textView13"
@@ -192,19 +192,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spDocumento" />
 
-    <EditText
-        android:id="@+id/edtNacionalidad"
-        android:layout_width="179dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.724"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtCelular" />
-
     <Spinner
         android:id="@+id/spDocumento"
         android:layout_width="143dp"
@@ -249,5 +236,15 @@
         app:layout_constraintHorizontal_bias="0.676"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtDireccion" />
+
+    <Spinner
+        android:id="@+id/spNacionalidad"
+        android:layout_width="224dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtCelular" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
