@@ -54,7 +54,7 @@ public class RegistroUsuario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ejecutarSerivcio("http://192.168.1.12:8081/proyectodb/inserta_usuario.php");
-                //startActivity(new Intent(RegistroUsuario.this, Menu.class));
+                startActivity(new Intent(RegistroUsuario.this, Menu.class));
             }
         });
 
@@ -76,7 +76,7 @@ public class RegistroUsuario extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> parametros = new HashMap<String,String>();
                 parametros.put("num_usu",edtNumDoc.getText().toString());
-                parametros.put("doctipo_usu",spTDoc.toString());
+                parametros.put("doctipo_usu",spTDoc.getSelectedItem().toString());
                 parametros.put("cel_usu",edtCelular.getText().toString());
                 parametros.put("nac_usu",edtNacionalidad.getText().toString());
                 parametros.put("dept_usu",edtDepartamento.getText().toString());

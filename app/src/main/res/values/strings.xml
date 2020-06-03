@@ -10,5 +10,6 @@
         <item>DNI</item>
         <item>Carnet</item>
     </string-array>
+    <string name="title_activity_mapa">Map</string>
 
 </resources>
