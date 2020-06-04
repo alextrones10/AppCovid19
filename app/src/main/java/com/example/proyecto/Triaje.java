@@ -80,7 +80,7 @@ public class Triaje extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> parametros = new HashMap<String,String>();
                 parametros.put("DifRespirar",cbDifRespirar.getText().toString());
-                parametros.put("Fiebre",cbFiebre.getText().toString();
+                parametros.put("Fiebre",cbFiebre.getText().toString());
                 parametros.put("TosSeca",cbTosSeca.getText().toString());
                 parametros.put("Cansancio",cbCansancio.getText().toString());
                 parametros.put("DolorGarganta",cbDolorGarganta.getText().toString());
