@@ -10,7 +10,7 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="16dp"
         android:text="Lista de Opciones"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -32,12 +32,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <Button
-        android:id="@+id/btnInfectados"
+        android:id="@+id/btnInfectadosMinsa"
         android:layout_width="160dp"
         android:layout_height="110dp"
         android:layout_marginTop="56dp"
         android:background="#973F3F"
-        android:text="Información de infectados"
+        android:text="Información de infectados MINSA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.86"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,48 +47,48 @@
         android:id="@+id/btnMapa"
         android:layout_width="160dp"
         android:layout_height="100dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="56dp"
         android:background="#AF6B30"
         android:text="Mapa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnInfectadosMinsa" />
+
+    <Button
+        android:id="@+id/btnInfectadosApp"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="56dp"
+        android:background="#FFEB3B"
+        android:text="INFORMACIÓN DE INFECTADOS DE LA APP"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnTriaje" />
 
     <Button
-        android:id="@+id/btnAlertas"
-        android:layout_width="160dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="36dp"
-        android:background="#FFEB3B"
-        android:text="Alertas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.86"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnInfectados" />
-
-    <Button
         android:id="@+id/btnRecomendaciones"
         android:layout_width="160dp"
         android:layout_height="110dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="64dp"
         android:background="#4A5BB8"
         android:text="Recomendaciones"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMapa" />
+        app:layout_constraintTop_toBottomOf="@+id/btnInfectadosApp" />
 
     <Button
         android:id="@+id/btnAcerca"
         android:layout_width="160dp"
         android:layout_height="110dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="64dp"
         android:background="#4CAF50"
         android:text="Acerca de"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.86"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAlertas" />
+        app:layout_constraintTop_toBottomOf="@+id/btnMapa" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

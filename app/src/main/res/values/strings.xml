@@ -7,4 +7,6 @@
     <string name="btnCancelarT">CancelarTriaje</string>
     <string name="title_activity_mapa">Map</string>
 
+    <string name="codigo">codigo</string>
+
 </resources>

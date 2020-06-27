@@ -10,5 +10,8 @@ public class Recomendaciones extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recomendaciones);
+
+        setTitle("Recomendaciones");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

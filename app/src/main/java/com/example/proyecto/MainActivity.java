@@ -7,24 +7,40 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+
 public class MainActivity extends AppCompatActivity {
 
-    Button btnRegistrar;
+    Button btnRegistraUsuario;
+    Button btnLogin;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnRegistrar = (Button) findViewById(R.id.btnRegistrarse);
+        setTitle("App Covid19");
 
-        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+        btnRegistraUsuario = (Button) findViewById(R.id.btnRegistraUsuario);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+
+
+        btnRegistraUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RegistroUsuario.class));
+                Intent intent = new Intent(MainActivity.this, RegistroUsuario.class);
+                startActivity(intent);
             }
         });
 
-
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Login.class);
+                startActivity(intent);
+            }
+        });
     }
+
 }

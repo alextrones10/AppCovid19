@@ -3,7 +3,11 @@ package com.example.proyecto;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+
 import android.os.Bundle;
+
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,90 +15,144 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.proyecto.entidad.Triaje;
+import com.example.proyecto.entidad.Usuario;
+import com.example.proyecto.servicio.ServicioRest;
+import com.example.proyecto.util.ConnectionRest;
 
-import java.util.HashMap;
-import java.util.Map;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegistroUsuario extends AppCompatActivity {
 
     //Objetos
-
+    ServicioRest servicio;
     Button btnAceptarU;
-    EditText edtNumDoc,edtCelular,edtDepartamento,edtProvincia,edtDistrito,edtDireccion;
-    Spinner spTDocumento, spNacionalidad;
+    EditText edtNumeroDoc,edtContraseña, edtCelular, edtCorreo;
+    Spinner spTipoDocumento, spNacionalidad;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_usuario);
 
+        setTitle("Usuario");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         //Vinculación de los objetos a los controles en el Layout
         //Spinner
-        spTDocumento = (Spinner) findViewById(R.id.spDocumento);
-        String [] TipoDocumento = new String[] {"DNI","Pasaporte","CE"};
+        spTipoDocumento = (Spinner) findViewById(R.id.spTipoDocumento);
+        String [] TipoDocumento = new String[] {"DNI","CE"};
         ArrayAdapter<String> adTipo = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,TipoDocumento);
-        spTDocumento.setAdapter(adTipo);
+        spTipoDocumento.setAdapter(adTipo);
 
         //Spinner02
         spNacionalidad = (Spinner) findViewById(R.id.spNacionalidad);
-        String [] Nacionalidad = new String[] {"Peruano","Venezolano","Boliviano","Argentino","Ecuatoriano","Brasileño"};
+        String [] Nacionalidad = new String[] {"Peruano","Venezolano","Boliviano","Argentino","Ecuatoriano"};
         ArrayAdapter<String> adNacionalidad = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Nacionalidad);
         spNacionalidad.setAdapter(adNacionalidad);
-        //
-        edtNumDoc = (EditText)findViewById(R.id.edtNumDoc);
+
+
+        edtNumeroDoc = (EditText)findViewById(R.id.edtNumeroDoc);
+        edtContraseña = (EditText)findViewById(R.id.edtContraseña);
         edtCelular = (EditText)findViewById(R.id.edtCelular);
-        edtDepartamento= (EditText)findViewById(R.id.edtDepartamento);
-        edtProvincia = (EditText)findViewById(R.id.edtProvincia);
-        edtDistrito = (EditText)findViewById(R.id.edtDistrito);
-        edtDireccion = (EditText)findViewById(R.id.edtDireccion);
+        edtCorreo = (EditText)findViewById(R.id.edtCorreo);
+
         btnAceptarU = (Button) findViewById(R.id.btnAceptarU);
 
+        servicio = ConnectionRest.getConnection().create(ServicioRest.class);
 
         btnAceptarU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ejecutarSerivcio("http://192.168.1.12:8080/proyectodb/insertar_usuario.php");
-                startActivity(new Intent(RegistroUsuario.this, Menu.class));
+
+                if(validar()) {
+                    Usuario u = new Usuario();
+
+                    u.setIdUsuario(Integer.parseInt(edtNumeroDoc.getText().toString()));
+                    u.setContraseña(edtContraseña.getText().toString());
+                    u.setTipodoc(spTipoDocumento.getSelectedItem().toString());
+                    u.setNacionalidad(spNacionalidad.getSelectedItem().toString());
+                    u.setCelular(edtCelular.getText().toString());
+                    u.setCorreo(edtCorreo.getText().toString());
+
+                    final String codigoUsuario = edtNumeroDoc.getText().toString();
+
+                    addUser(u);
+                    Intent intent = new Intent(RegistroUsuario.this, Menu.class);
+                    intent.putExtra("codigo",codigoUsuario);
+                    startActivity(intent);
+                }
             }
         });
 
     }
-    //Metodo para enviar peticiones al servidor
-    private void ejecutarSerivcio(String URL) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+
+    public void addUser(Usuario u){
+        Call<Usuario> call = servicio.agregaUsuario(u);
+        call.enqueue(new Callback<Usuario>() {
             @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(),"Registro exitoso",Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                mensaje("-->" + response.isSuccessful());
+                if(response.isSuccessful()){
+                    Toast.makeText(RegistroUsuario.this, "Registro exitoso!", Toast.LENGTH_SHORT).show();
+                }
             }
-        }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Usuario> call, Throwable t) {
+                Log.e("ERROR: ", t.getMessage());
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> parametros = new HashMap<String,String>();
-                parametros.put("num_usu",edtNumDoc.getText().toString());
-                parametros.put("doctipo_usu",spTDocumento.getSelectedItem().toString());
-                parametros.put("cel_usu",edtCelular.getText().toString());
-                parametros.put("nac_usu",spNacionalidad.getSelectedItem().toString());
-                parametros.put("dept_usu",edtDepartamento.getText().toString());
-                parametros.put("prov_usu",edtProvincia.getText().toString());
-                parametros.put("dist_usu",edtDistrito.getText().toString());
-                parametros.put("dir_usu",edtDireccion.getText().toString());
-                return parametros;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        });
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    void mensaje(String mensaje){
+        Toast toast1 =  Toast.makeText(getApplicationContext(),mensaje, Toast.LENGTH_LONG);
+        toast1.show();
+    }
+
+    public boolean validar() {
+
+        boolean var = true;
+
+        String id = edtNumeroDoc.getText().toString();
+        String contraseña = edtContraseña.getText().toString();
+        String cel = edtCelular.getText().toString();
+        String email = edtCorreo.getText().toString();
+
+        if(id.isEmpty()) {
+            edtNumeroDoc.setError("Numero de Documento Obligatorio");
+            var = false;
+        }
+        if(contraseña.isEmpty()) {
+            edtContraseña.setError("Campo  Obligatorio");
+            var = false;
+        }
+        if(cel.isEmpty()) {
+            edtCelular.setError("Campo Obligatorio");
+            var = false;
+        }
+        if(email.isEmpty()) {
+            edtCorreo.setError("Campo Obligatorio");
+            var = false;
+        }
+        return var;
+    }
+
 
 
 }

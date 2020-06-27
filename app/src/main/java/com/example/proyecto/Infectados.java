@@ -15,6 +15,9 @@ public class Infectados extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_infectados);
 
+        setTitle("Infectados");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         vistaIfectados = findViewById(R.id.wvInfectados);
         vistaIfectados.getSettings().setJavaScriptEnabled(true);
         vistaIfectados.setWebViewClient(new WebViewClient());
